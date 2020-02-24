@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Log in</h2>
+  <br>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+      <div>
+        <%= f.label :Name %><br />
+        <%= f.text_field :name %>
+      </div>
+      <br>
+      <div>
+        <%= f.label :Password %><br />
+        <%= f.password_field :password %>
+      </div>
+      <br>
+      <div>
+        <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+        <label for="user_remember_me">Remember me</label>
+      </div>
+      <br>
+      <div>
+        <%= f.submit "Log in",class:"btn btn-primary" %>
+      </div>
+  <% end %>
+  <br>
+  <%= render "devise/shared/links" %>
+</div>
