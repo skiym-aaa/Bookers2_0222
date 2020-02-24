@@ -40,4 +40,10 @@ class BooksController < ApplicationController
       book.destroy
       redirect_to books_path
   end
+
+  # 投稿データのストロングパラメータ
+  private
+    def book_params
+        params.require(:book).permit(:title, :body, :user_id)
+    end
 end
