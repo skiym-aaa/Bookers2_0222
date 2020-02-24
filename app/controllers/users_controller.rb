@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   def show
       @user = User.find(params[:id])
       @book = Book.new
+      # ページャ実装？
+      @books = @user.books.reverse_order
   end
 
   def edit
