@@ -1,23 +1,26 @@
 <div class="body">
   <div class="container">
     <div class="row">
-      <%= render 'users/sidebar', book: @book ,user: @user %>
+      <%= render 'users/sidebar', book: @book, user: @user %>
         <div class="col-xs-9">
           <h2>Book detail</h2>
             <table class="table">
               <tbody>
                 <tr>
-                  <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
-                  <!-- link to インスタント変数の文法 -->
-                  <%= link_to '#', users_path(@user.id) %>
-                  <td><%= @book.title %></td>
-                  <td><%= @book.body %></td>
-                  <!-- 投稿ユーザーのみ -->
-                  <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success btn-sm" %></td>
-                  <td><%= link_to "Destroy", book_path(@book.id), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                  <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                  </td>
+                  <td><%= @books.title %></td>
+                  <td><%= @books.body %></td>
+                  <!-- 投稿ユーザーのみ表示 -->
+                  <% if @user.id == current_user.id %>
+                    <td><%= link_to "Edit", edit_book_path(@books.id), class: "btn btn-success btn-sm" %></td>
+                    <td><%= link_to "Destroy", book_path(@books.id), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                  <% end %>
                 </tr>
               </tbody>
             </table>
+            <%= link_to @user.name, users_path %>
+
         </div>
     </div>
   </div>

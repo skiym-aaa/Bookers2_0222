@@ -8,6 +8,7 @@ class BooksController < ApplicationController
 
   def create
       @book = Book.new(book_params)
+      @book.user_id = current_user.id
       if @book.save
         # 投稿に成功した場合
         flash[:notice] = 'You have created book successfully.'
@@ -19,9 +20,9 @@ class BooksController < ApplicationController
   end
 
   def show
-      @user = User.find(params[:id])
       @book = Book.new
-      @book = Book.find(params[:id])
+      @books = Book.find(params[:id])
+      @user = @books.user
   end
 
   def edit
