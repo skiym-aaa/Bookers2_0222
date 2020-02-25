@@ -48,6 +48,12 @@
         </nav>
       </div>
     </header>
+    <!-- flashメッセージ -->
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 
